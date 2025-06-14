@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Constancia de Reciclaje</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    .constancia {
+      border: 2px solid #4CAF50;
+      padding: 20px;
+      margin-top: 30px;
+      display: inline-block;
+    }
+    h1 {
+      color: #4CAF50;
+    }
+  </style>
+</head>
+<body>
+  <h1>Constancia de Depósito de Reciclaje</h1>
+  <div class="constancia">
+    <p><strong>Escuela:</strong> Universidad Autónoma de Occidente</p>
+    <p><strong>Fecha:</strong> <span id="fecha"></span></p>
+    <p><strong>Hora:</strong> <span id="hora"></span></p>
+    <p><strong>Folio generado:</strong> <span id="folio"></span></p>
+    <p>Gracias por apoyar al medio ambiente.</p>
+  </div>
+
+  <script>
+    const now = new Date();
+    const fecha = now.toLocaleDateString('es-MX');
+    const hora = now.toLocaleTimeString('es-MX');
+
+    function generarFolio() {
+      const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const numeros = '0123456789';
+      let parteAleatoria = '';
+      for (let i = 0; i < 2; i++) parteAleatoria += letras.charAt(Math.floor(Math.random() * letras.length));
+      for (let i = 0; i < 2; i++) parteAleatoria += numeros.charAt(Math.floor(Math.random() * numeros.length));
+      for (let i = 0; i < 2; i++) parteAleatoria += letras.charAt(Math.floor(Math.random() * letras.length));
+      return `REC-${now.getFullYear()}${(now.getMonth()+1).toString().padStart(2,'0')}${now.getDate().toString().padStart(2,'0')}-${parteAleatoria}`;
+    }
+
+    document.getElementById("fecha").textContent = fecha;
+    document.getElementById("hora").textContent = hora;
+    document.getElementById("folio").textContent = generarFolio();
+  </script>
+</body>
+</html>
